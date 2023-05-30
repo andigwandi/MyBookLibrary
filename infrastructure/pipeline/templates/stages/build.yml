@@ -31,7 +31,7 @@ stages:
       - ${{ each environment in parameters.environments }}:
           - template: '../jobs/infrastructure.yml'
             parameters:
-              azureSubscription: 'AZR-${{ environment }}-ServiceConnection'
+              azureSubscription: '${{ environment }}'
               terraformVersion: ${{ parameters.terraformVersion }}
               tfParallelism: ${{ parameters.tfParallelism }}
               environment: ${{ environment }}
