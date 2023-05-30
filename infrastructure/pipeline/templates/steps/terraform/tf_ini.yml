@@ -1,0 +1,32 @@
+parameters:
+  - name: azureSubscription
+    type: string
+  - name: resourceGroup
+    type: string
+  - name: statefileName
+    type: string
+  - name: ringSuffix
+    type: string
+  - name: workingDirectory
+    type: string
+
+steps:
+  - task: AzureCLI@2
+    displayName: 'Create TF State Storage Account and Container'
+    inputs:
+      azureSubscription: ${{ parameters.azureSubscription }}
+      scriptType: pscore
+      scriptLocation: inlineScript
+      workingDirectory: ${{ parameters.workingDirectory }}
+      addSpnToEnvironment: true
+      inlineScript: |
+        dir
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+    displayName: 'Terraform: Init'
+    inputs:
+      workingDirectory: ${{ parameters.workingDirectory }}
+      backendServiceArm: ${{ parameters.azureSubscription }}
+      backendAzureRmResourceGroupName: ${{ parameters.resourceGroup }}
+      backendAzureRmStorageAccountName: 'tfps2${{parameters.ringSuffix}}'
+      backendAzureRmContainerName: 'ps2-state'
+      backendAzureRmKey: ${{ parameters.statefileName }}

@@ -1,0 +1,12 @@
+parameters:
+  - name: sourceFolder
+    type: string
+  - name: targetFolder
+    type: string
+
+steps:
+  - task: CopyFiles@2
+    displayName: 'Copy Files'
+    inputs:
+      SourceFolder: '${{ parameters.sourceFolder }}'
+      TargetFolder: '${{ parameters.targetFolder }}'

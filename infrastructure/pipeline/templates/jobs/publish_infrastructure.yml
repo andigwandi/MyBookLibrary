@@ -1,0 +1,4 @@
+jobs:
+  - job: 'publish_infrastructure'
+    steps:
+      - template: '../steps/terraform/tf_publish.yml'

@@ -1,0 +1,67 @@
+parameters:
+  - name: buildDirectory
+    type: string
+
+steps:
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+
+  - task: Cache@2
+    displayName: Cache
+    inputs:
+      key: 'nuget | "$(Agent.OS)" | **/packages.lock.json'
+      path: '$(NUGET_PACKAGES)'
+      restoreKeys: |
+        nuget | "$(Agent.OS)"
+        nuget
+      cacheHitVar: 'CACHE_RESTORED'
+
+  - script: echo "cache restored $(CACHE_RESTORED)"
+    displayName: 'Cache Hit result'
+
+  - task: NuGetCommand@2
+    displayName: 'Nuget Restore'
+    condition: ne(variables.CACHE_RESTORED, true)
+    inputs:
+      command: 'restore'
+      restoreSolution: '**/*.sln'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Build Solution'
+    inputs:
+      command: build
+      projects: ${{ parameters.buildDirectory }}
+      zipAfterPublish: true
+
+  - template: 'securityscans/whitesource.yml'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Execute Test'
+    inputs:
+      command: test
+      projects: |
+        **/*.Tests/*.csproj
+      arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+      publishTestResults: true
+
+  - script: |
+      dotnet tool install -g dotnet-reportgenerator-globaltool
+      reportgenerator -reports:$(Build.SourcesDirectory)\**\coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)\CodeCoverage -reporttypes:HtmlInline_AzurePipelines;Cobertura
+    displayName: Create Code coverage report
+
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish Code Coverage Results'
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '$(Build.SourcesDirectory)\**\CodeCoverage\Cobertura.xml'
+      reportDirectory: '$(Build.SourcesDirectory)\CodeCoverage'
+      failIfCoverageEmpty: true
+      
+  - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@8
+    displayName: 'Check Line Coverage'
+    continueOnError: true
+    inputs:
+      checkCoverage: true
+      coverageFailOption: fixed
+      coverageType: lines
+      coverageThreshold: $(coverageThreshold)

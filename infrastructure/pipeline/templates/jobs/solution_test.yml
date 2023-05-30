@@ -1,0 +1,19 @@
+parameters:
+  - name: buildDirectory
+    type: string
+  - name: dotnetVersion
+    type: string
+  - name: solution
+    type: string
+
+jobs:
+  - job: '${{ parameters.solution }}_Solution_Test'
+    pool:
+      vmImage: windows-2022
+    steps:
+      - template: '../steps/use_dotnet.yml'
+        parameters:
+          dotnetVersion: ${{ parameters.dotNetVersion }}
+      - template: '../steps/test_solution.yml'
+        parameters:
+          buildDirectory: ${{ parameters.buildDirectory }}

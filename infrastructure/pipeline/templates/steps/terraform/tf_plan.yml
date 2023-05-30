@@ -1,0 +1,25 @@
+parameters:
+  - name: statefile
+    type: string
+  - name: ring
+    type: string
+  - name: artifact_dir
+    type: string
+  - name: azureSubscription
+    type: string
+  - name: tfParallelism
+    type: number
+    default: 10
+
+steps:
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+    displayName: 'Terraform: Plan'
+    inputs:
+      command: plan
+      workingDirectory: '$(System.DefaultWorkingDirectory)/infrastructure/tf/root'
+      environmentServiceNameAzureRM: ${{ parameters.azureSubscription }}
+      commandOptions: >
+        -var-file=$(System.DefaultWorkingDirectory)/infrastructure/tf/config/${{ parameters.ring }}/${{ parameters.stateFile }}.tfvars
+        -var rdscmasterdataloader_function_code=${{ parameters.artifact_dir }}/functionRDSCMasterDataLoader.zip
+        -parallelism=${{ parameters.tfParallelism }}
+        -lock=false

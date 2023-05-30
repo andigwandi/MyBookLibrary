@@ -1,0 +1,32 @@
+parameters:
+  - name: buildDirectory
+    type: string
+  - name: artifactName
+    type: string
+  - name: dotnetVersion
+    type: string
+
+jobs:
+  - job: '${{parameters.artifactName}}_azureFunction_Build'
+    steps:
+      - template: '../steps/use_dotnet.yml'
+        parameters:
+          dotnetVersion: ${{ parameters.dotNetVersion }}
+      - template: '../steps/build_function.yml'
+        parameters:
+          artifactName: ${{ parameters.artifactName }}
+          buildDirectory: ${{ parameters.buildDirectory }}
+          buildConfig: 'Release'
+
+      - template: '../steps/copy_files.yml'
+        parameters:
+          sourceFolder: '$(Build.StagingDirectory)/${{ parameters.artifactName }}'
+          targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - template: '../steps/archive_files.yml'
+        parameters:
+          artifactName: ${{ parameters.artifactName }}
+
+      - template: '../steps/publish_build.yml'
+        parameters:
+          artifactName: ${{ parameters.artifactName }}

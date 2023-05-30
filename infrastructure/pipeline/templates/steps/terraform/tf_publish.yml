@@ -1,0 +1,4 @@
+steps:
+  - publish: 'infrastructure'
+    artifact: infrastructure
+    displayName: 'Publish Artifact: infrastructure'

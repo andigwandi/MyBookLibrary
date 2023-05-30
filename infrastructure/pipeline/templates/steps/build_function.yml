@@ -1,0 +1,28 @@
+parameters:
+  - name: buildDirectory
+    type: string
+  - name: buildConfig
+    type: string
+  - name: artifactName
+    type: string
+
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Build Function'
+    inputs:
+      command: build
+      projects: ${{ parameters.buildDirectory }}
+      arguments: '
+        --configuration ${{ parameters.buildConfig }}'
+      zipAfterPublish: false
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish Function'
+    inputs:
+      command: publish
+      publishWebProjects: false
+      projects: ${{ parameters.buildDirectory }}
+      modifyOutputPath: false
+      zipAfterPublish: false
+      arguments: '
+        --configuration ${{ parameters.buildConfig }}
+        --output $(Build.StagingDirectory)/${{ parameters.artifactName }}'

@@ -1,0 +1,10 @@
+parameters:
+  - name: artifactName
+    type: string
+
+steps:
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Artifacts
+    inputs:
+      pathToPublish: "$(Build.ArtifactsStagingDirectory)/${{ parameters.artifactName }}.zip"
+      artifactName: "${{ parameters.artifactName }}"

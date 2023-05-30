@@ -1,0 +1,11 @@
+variables:
+  - name: terraformVersion
+    value: 1.4.4
+  - name: default_vmImage
+    value: 'ubuntu-20.04'
+  - name: NUGET_PACKAGES
+    value: $(Pipeline.Workspace)/.nuget/packages
+  - name: dotnet_version
+    value: '6.x'
+  - name: tfParallelism
+    value: 10

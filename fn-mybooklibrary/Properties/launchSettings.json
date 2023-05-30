@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "fn_mybooklibrary": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7286",
+      "launchBrowser": false
+    }
+  }
+}

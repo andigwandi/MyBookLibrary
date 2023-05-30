@@ -1,0 +1,11 @@
+variables:
+  - name: activeRegion
+    value: eastus
+  - name: enabled
+    value: true
+  - name: resourceGroup
+    value: MyBookLibrary
+  - name: ringSuffix
+    value: dev
+  - name: subscription_Id
+    value: 67538816-c2ca-4f53-983a-a1209fe3c440

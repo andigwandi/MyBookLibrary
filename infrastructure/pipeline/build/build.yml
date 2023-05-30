@@ -1,0 +1,24 @@
+trigger:
+  branches:
+    include:
+      - develop
+
+name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+resources:
+  repositories:
+    - repository: self
+      type: git
+
+variables:
+  - template: '../variables/settings.yml'
+
+pool:
+  vmImage: $(default_vmImage)
+stages:
+  - template: '../templates/stages/build.yml'
+    parameters:
+      dotnetVersion: $(dotnet_version)
+      environment: ['dev', 'uat']
+      stateFile: 'default'
+      terraformVersion: $(terraformVersion)
+      tfParallelism: ${{ variables.tfParallelism }}
