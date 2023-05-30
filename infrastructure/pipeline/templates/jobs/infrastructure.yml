@@ -1,12 +1,12 @@
 parameters:
   - name: terraformVersion
-    type: stenvironment
+    type: string
   - name: statefile
-    type: stenvironment
+    type: string
   - name: environment
-    type: stenvironment
+    type: string
   - name: azureSubscription
-    type: stenvironment
+    type: string
   - name: tfParallelism
     type: number
 
