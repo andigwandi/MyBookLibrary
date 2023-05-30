@@ -5,7 +5,7 @@ variables:
     value: true
   - name: resourceGroup
     value: MyBookLibrary
-  - name: ringSuffix
+  - name: environmentSuffix
     value: dev
   - name: subscription_Id
     value: 67538816-c2ca-4f53-983a-a1209fe3c440

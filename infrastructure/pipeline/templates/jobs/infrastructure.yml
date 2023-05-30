@@ -1,0 +1,40 @@
+parameters:
+  - name: terraformVersion
+    type: stenvironment
+  - name: statefile
+    type: stenvironment
+  - name: environment
+    type: stenvironment
+  - name: azureSubscription
+    type: stenvironment
+  - name: tfParallelism
+    type: number
+
+jobs:
+  - job: 'build_${{ parameters.environment }}_${{ parameters.statefile }}_infrastructure'
+    variables:
+      - template: '../../variables/${{ parameters.environment }}.yml'
+    condition: eq(variables.enabled, true)
+    steps:
+      - template: '../steps/terraform/tf_config.yml'
+        parameters:
+          terraformVersion: ${{ parameters.terraformVersion }}
+      - template: '../steps/terraform/tf_init.yml'
+        parameters:
+          azureSubscription: ${{ parameters.azureSubscription }}
+          resourceGroup: $(resourceGroup)
+          statefileName: '${{ parameters.environment }}-${{ parameters.stateFile }}.tfstate'
+          environmentSuffix: $(environmentSuffix)
+          workingDirectory: '$(System.DefaultWorkingDirectory)/infrastructure/tf/root'
+
+      - template: '../steps/terraform/tf_validate.yml'
+        parameters:
+          workingDirectory: '$(System.DefaultWorkingDirectory)/infrastructure/tf/root'
+
+      - template: '../steps/terraform/tf_plan.yml'
+        parameters:
+          statefile: ${{ parameters.statefile }}
+          environment: ${{ parameters.environment }}
+          artifact_dir: $(Build.ArtifactStagingDirectory)
+          azureSubscription: ${{ parameters.azureSubscription }}
+          tfParallelism: ${{ parameters.tfParallelism}}

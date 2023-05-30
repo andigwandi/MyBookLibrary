@@ -5,7 +5,7 @@ parameters:
     type: string
   - name: statefileName
     type: string
-  - name: ringSuffix
+  - name: environmentSuffix
     type: string
   - name: workingDirectory
     type: string
@@ -27,6 +27,6 @@ steps:
       workingDirectory: ${{ parameters.workingDirectory }}
       backendServiceArm: ${{ parameters.azureSubscription }}
       backendAzureRmResourceGroupName: ${{ parameters.resourceGroup }}
-      backendAzureRmStorageAccountName: 'tfps2${{parameters.ringSuffix}}'
+      backendAzureRmStorageAccountName: 'tfps2${{parameters.environmentSuffix}}'
       backendAzureRmContainerName: 'ps2-state'
       backendAzureRmKey: ${{ parameters.statefileName }}

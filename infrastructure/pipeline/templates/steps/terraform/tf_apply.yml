@@ -1,7 +1,7 @@
 parameters:
   - name: statefile
     type: string
-  - name: ring
+  - name: environment
     type: string
   - name: artifact_dir
     type: string
@@ -18,7 +18,7 @@ steps:
       command: apply
       workingDirectory: '$(System.DefaultWorkingDirectory)/infrastructure/tf/root'
       commandOptions: >
-        -var-file=$(System.DefaultWorkingDirectory)/infrastructure/tf/config/${{ parameters.ring }}/${{ parameters.stateFile }}.tfvars
+        -var-file=$(System.DefaultWorkingDirectory)/infrastructure/tf/config/${{ parameters.environment }}/${{ parameters.stateFile }}.tfvars
         -var rdscmasterdataloader_function_code=${{ parameters.artifact_dir }}/functionRDSCMasterDataLoader.zip
         -parallelism=${{ parameters.tfParallelism }}
       environmentServiceNameAzureRM: ${{ parameters.azureSubscription }}
