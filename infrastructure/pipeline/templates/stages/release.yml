@@ -1,0 +1,38 @@
+parameters:
+  - name: terraformVersion
+    type: string
+  - name: environment
+    type: string
+  - name: dependsOn
+    type: string
+    default: ''
+  - name: branchName
+    type: string
+  - name: buildVersionToDownload
+    type: string
+  - name: runId
+    type: string
+    default:
+  - name: projectID
+    type: string
+  - name: pipelineID
+    type: string
+  - name: tfParallelism
+    type: number
+  - name: stateFile
+    type: string
+
+stages:
+  - template: ../jobs/release.yml
+    parameters:
+      azureSubscription: '${{ parameters.environment }}'
+      terraformVersion: ${{ parameters.terraformVersion }}
+      environment: ${{ parameters.environment }}
+      dependsOn: ${{ parameters.dependsOn }}
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+      projectID: ${{ parameters.projectID }}
+      pipelineId: ${{ parameters.pipelineID }}
+      tfParallelism: ${{ parameters.tfParallelism }}
+      stateFile: ${{ parameters.stateFile }}

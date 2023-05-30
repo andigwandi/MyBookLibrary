@@ -4,7 +4,7 @@ variables:
   - name: enabled
     value: true
   - name: resourceGroup
-    value: MyBookLibrary
+    value: mbl-uat
   - name: environmentSuffix
     value: uat
   - name: subscription_Id

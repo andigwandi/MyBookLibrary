@@ -1,0 +1,91 @@
+parameters:
+  - name: azureSubscription
+    type: string
+  - name: terraformVersion
+    type: string
+  - name: environment
+    type: string
+  - name: dependsOn
+    type: string
+    default:
+  - name: branchName
+    type: string
+  - name: buildVersionToDownload
+    type: string
+  - name: runId
+    type: string
+    default:
+  - name: projectID
+    type: string
+  - name: pipelineID
+    type: string
+  - name: tfParallelism
+    type: number
+  - name: stateFile
+    type: string
+
+stages:
+  - stage: 'Release_${{ parameters.environment }}_${{ parameters.statefile }}'
+    ${{ if ne(length(parameters.dependsOn), 0) }}:
+      dependsOn: ${{ parameters.dependsOn }}
+    ${{ if eq(length(parameters.dependsOn), 0) }}:
+      dependsOn: []
+    variables:
+      - template: '../../variables/${{ parameters.environment }}.yml'
+
+    condition: and(or(eq(variables['Build.SourceBranch'], 'refs/heads/develop')), and(succeeded(), eq(variables.enabled, 'true')))
+    jobs:
+      - deployment: 'Deploy_${{ parameters.environment }}_${{ parameters.statefile }}'
+        environment: 'MBL-${{ parameters.stateFile }}-${{ parameters.environment }}'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                - template: '../steps/terraform/tf_config.yml'
+                  parameters:
+                    terraformVersion: ${{ parameters.terraformVersion }}
+
+                - template: '../steps/download_infrastructure.yml'
+                  parameters:
+                    branchName: ${{ parameters.branchName }}
+                    buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+                    runId: ${{ parameters.runId }}
+                    projectID: ${{ parameters.projectID }}
+                    pipelineId: ${{ parameters.pipelineID }}
+
+                - template: '../steps/build_artifacts.yml'
+                  parameters:
+                    branchName: ${{ parameters.branchName }}
+                    buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+                    runId: ${{ parameters.runId }}
+                    projectID: ${{ parameters.projectID }}
+                    pipelineId: ${{ parameters.pipelineID }}
+
+                - template: '../steps/terraform/tf_init.yml'
+                  parameters:
+                    azureSubscription: ${{ parameters.azureSubscription }}
+                    resourceGroup: $(resourceGroup)
+                    statefileName: '${{ parameters.environment }}-${{ parameters.stateFile }}.tfstate'
+                    ringSuffix: $(ringSuffix)
+                    workingDirectory: '$(System.DefaultWorkingDirectory)/infrastructure/tf/root'
+
+                - template: '../steps/terraform/tf_validate.yml'
+                  parameters:
+                    workingDirectory: '$(System.DefaultWorkingDirectory)/infrastructure/tf/root'
+
+                - template: '../steps/terraform/tf_plan.yml'
+                  parameters:
+                    statefile: ${{ parameters.statefile }}
+                    environment: ${{ parameters.environment }}
+                    artifact_dir: $(System.DefaultWorkingDirectory)
+                    azureSubscription: ${{ parameters.azureSubscription }}
+                    tfParallelism: ${{ parameters.tfParallelism}}
+
+                - template: '../steps/terraform/tf_apply.yml'
+                  parameters:
+                    statefile: ${{ parameters.statefile }}
+                    environment: ${{ parameters.environment }}
+                    artifact_dir: $(System.DefaultWorkingDirectory)
+                    azureSubscription: ${{ parameters.azureSubscription }}
+                    tfParallelism: ${{ parameters.tfParallelism}}
