@@ -1,10 +1,10 @@
 parameters:
   - name: dotnetVersion
-    type: stenvironment
+    type: string
   - name: terraformVersion
-    type: stenvironment
+    type: string
   - name: stateFile
-    type: stenvironment
+    type: string
   - name: tfParallelism
     type: number
   - name: environments
