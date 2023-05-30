@@ -21,12 +21,12 @@ steps:
       addSpnToEnvironment: true
       inlineScript: |
         dir
-  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
     displayName: 'Terraform: Init'
     inputs:
       workingDirectory: ${{ parameters.workingDirectory }}
       backendServiceArm: ${{ parameters.azureSubscription }}
       backendAzureRmResourceGroupName: ${{ parameters.resourceGroup }}
-      backendAzureRmStorageAccountName: 'tfps2${{parameters.environmentSuffix}}'
-      backendAzureRmContainerName: 'ps2-state'
+      backendAzureRmStorageAccountName: 'tfMyBookLib${{parameters.environmentSuffix}}'
+      backendAzureRmContainerName: 'state'
       backendAzureRmKey: ${{ parameters.statefileName }}

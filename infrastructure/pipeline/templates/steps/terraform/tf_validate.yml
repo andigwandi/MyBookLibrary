@@ -2,7 +2,7 @@ parameters:
   - name: workingDirectory
     type: string
 steps:
-  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
     displayName: 'Terraform: Validate'
     inputs:
       command: validate

@@ -3,7 +3,7 @@ parameters:
     type: string
 
 steps:
-  - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+  - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@1
     displayName: 'Use Terraform ${{ parameters.terraformVersion }}'
     inputs:
       terraformversion: ${{ parameters.terraformVersion }}

@@ -12,13 +12,13 @@ parameters:
     default: 10
 
 steps:
-  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV2@2
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
     displayName: 'Terraform: Apply'
     inputs:
       command: apply
       workingDirectory: '$(System.DefaultWorkingDirectory)/infrastructure/tf/root'
       commandOptions: >
         -var-file=$(System.DefaultWorkingDirectory)/infrastructure/tf/config/${{ parameters.environment }}/${{ parameters.stateFile }}.tfvars
-        -var rdscmasterdataloader_function_code=${{ parameters.artifact_dir }}/functionRDSCMasterDataLoader.zip
+        -var function_code=${{ parameters.artifact_dir }}/function.zip
         -parallelism=${{ parameters.tfParallelism }}
       environmentServiceNameAzureRM: ${{ parameters.azureSubscription }}
