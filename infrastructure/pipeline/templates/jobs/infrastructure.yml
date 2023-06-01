@@ -18,7 +18,8 @@ jobs:
     steps:
       - template: '../steps/download_secure_files.yml'
         parameters:
-          ring: ${{ parameters.environment }}
+          environment: ${{ parameters.environment }}
+          
       - template: '../steps/download_stub_artifact_secure_files.yml'
       - template: '../steps/terraform/tf_config.yml'
         parameters:
