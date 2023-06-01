@@ -25,6 +25,6 @@ steps:
     inputs:
       command: test
       projects: |
-        **/*.Tests/*.csproj
+        **/Tests/*.csproj
       arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
       publishTestResults: true
