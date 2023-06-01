@@ -16,6 +16,10 @@ jobs:
       - template: '../../variables/${{ parameters.environment }}.yml'
     condition: eq(variables.enabled, true)
     steps:
+      - template: '../steps/download_secure_files.yml'
+        parameters:
+          ring: ${{ parameters.environment }}
+      - template: '../steps/download_stub_artifact_secure_files.yml'
       - template: '../steps/terraform/tf_config.yml'
         parameters:
           terraformVersion: ${{ parameters.terraformVersion }}
