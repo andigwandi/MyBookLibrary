@@ -17,7 +17,7 @@
 </div>
 
 <div>
-    <button type="button" onclick="parseJson()">Find Value</button>
+    <button type="button" id="Save">Find Value</button>
 </div>
 
 <div>
@@ -26,7 +26,7 @@
 </div>
 
 @section Scripts {
-    <script>
+   @* <script>
         function parseJson() {
             var jsonData = document.getElementById("jsonInput").value;
             var key = document.getElementById("keyInput").value;
@@ -34,7 +34,7 @@
             // Send the JSON data and key to the server for processing
             $.ajax({
                 type: "POST",
-                url: "/GetItemKey/FindValue",
+                url: "/JsonParser/FindValue",
                 data: { json: jsonData, key: key },
                 success: function (result) {
                     // Update the value result on the page
@@ -42,5 +42,16 @@
                 }
             });
         }
+    </script>*@
+
+    <script type="text/javascript">
+        $('#Save').click(function () {
+            var url = "/JsonParser/FindValue";
+            var jsonInput = $("#jsonInput").val();
+            var keyInput = $("#keyInput").val();
+            $.post(url, { jsonInput: jsonInput, keyInput: keyInput }, function (data) {
+                $("#valueResult").html(data);
+            });
+        })
     </script>
 }

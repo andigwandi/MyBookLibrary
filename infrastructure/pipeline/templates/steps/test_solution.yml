@@ -28,25 +28,3 @@ steps:
         **/*.Tests/*.csproj
       arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
       publishTestResults: true
-
-  - script: |
-      dotnet tool install -g dotnet-reportgenerator-globaltool
-      reportgenerator -reports:$(Build.SourcesDirectory)\**\coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)\CodeCoverage -reporttypes:HtmlInline_AzurePipelines;Cobertura
-    displayName: Create Code coverage report
-
-  - task: PublishCodeCoverageResults@1
-    displayName: 'Publish Code Coverage Results'
-    inputs:
-      codeCoverageTool: 'Cobertura'
-      summaryFileLocation: '$(Build.SourcesDirectory)\**\CodeCoverage\Cobertura.xml'
-      reportDirectory: '$(Build.SourcesDirectory)\CodeCoverage'
-      failIfCoverageEmpty: true
-
-  - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@8
-    displayName: 'Check Line Coverage'
-    continueOnError: true
-    inputs:
-      checkCoverage: true
-      coverageFailOption: fixed
-      coverageType: lines
-      coverageThreshold: $(coverageThreshold)

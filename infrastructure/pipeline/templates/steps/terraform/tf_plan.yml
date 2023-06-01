@@ -20,6 +20,7 @@ steps:
       environmentServiceNameAzureRM: ${{ parameters.azureSubscription }}
       commandOptions: >
         -var-file=$(System.DefaultWorkingDirectory)/infrastructure/tf/config/${{ parameters.environment }}/${{ parameters.stateFile }}.tfvars
+        -var-file=$(Agent.TempDirectory)/${{ parameters.environment }}-sensitive.tfvars
         -var function_code=${{ parameters.artifact_dir }}/function.zip
         -parallelism=${{ parameters.tfParallelism }}
         -lock=false
