@@ -23,7 +23,7 @@ stages:
       - template: '../jobs/solution_test.yml'
         parameters:
           dotnetVersion: ${{ parameters.dotnetVersion }}
-          buildDirectory: 'MyBookLibrary/MyBookLibrary.sln'
+          buildDirectory: 'MyBookLibrary.sln'
           solution: 'MyBookLibrary'      
 
       - template: '../jobs/publish_infrastructure.yml'
