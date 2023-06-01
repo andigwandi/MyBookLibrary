@@ -33,6 +33,8 @@ module "network" {
 module "app" {
   source = "../modules/app"
 
+  depends_on = [module.network]
+
   keyvault_config         = local.keyvault_config
   keyvault_network_config = var.keyvault_network_config
   vnet_config             = module.network.vnet_config
