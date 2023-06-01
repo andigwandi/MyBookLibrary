@@ -63,8 +63,8 @@ stages:
                     pipelineId: ${{ parameters.pipelineID }}
 
                 - template: '../steps/download_secure_files.yml'
-                    parameters:
-                        environment: ${{ parameters.environment }}
+                  parameters:
+                    environment: ${{ parameters.environment }}
 
                 - template: '../steps/terraform/tf_init.yml'
                   parameters:
