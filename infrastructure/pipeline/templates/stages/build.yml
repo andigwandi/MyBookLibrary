@@ -14,22 +14,7 @@ parameters:
 stages:
   - stage: build
     jobs:
-      {% comment  
-      - template: '../jobs/functions.yml'
-        parameters:
-          dotnetVersion: ${{ parameters.dotnetVersion }}
-          buildDirectory: 'fn-mybooklibrary/mbl-app.csproj'
-          artifactName: 'function'
-
-      - template: '../jobs/solution_test.yml'
-        parameters:
-          dotnetVersion: ${{ parameters.dotnetVersion }}
-          buildDirectory: 'MyBookLibrary.sln'
-          solution: 'MyBookLibrary'      
-
-      - template: '../jobs/publish_infrastructure.yml' 
-      %}
-
+      
       - ${{ each environment in parameters.environments }}:
           - template: '../jobs/infrastructure.yml'
             parameters:
