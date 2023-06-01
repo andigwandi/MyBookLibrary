@@ -4,7 +4,7 @@ module "sql_server" {
 
   env_config = local.env_config
   db_config = {
-    server_name               = "mbl"
+    server_name               = "mssql"
     db_name                   = "db"
     primary_database_version  = "12.0"
     primary_database_admin    = local.sql_credentials.administrator_login
