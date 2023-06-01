@@ -10,7 +10,7 @@ resource "azurerm_subnet" "main" {
   service_endpoints    = local.config.service_endpoints
 
   dynamic "delegation" {
-    for_each = (len(local.config.delegates > 0)) ? [1] : [0]
+    for_each = (length(local.config.delegates) > 0) ? [1] : [0]
     content {
       name = "delegation"
       service_delegation {

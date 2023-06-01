@@ -24,6 +24,7 @@ module "subnet_web" {
     vnet_name         = module.vnet.config.name
     subnet_cidr       = local.network_cidr.websubnetcidr
     service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage", "Microsoft.Sql", "Microsoft.Web"]
+    delegates         = null
   }
 }
 
@@ -54,5 +55,6 @@ module "subnet_db" {
     vnet_name         = module.vnet.config.name
     subnet_cidr       = local.network_cidr.dbsubnetcidr
     service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage", "Microsoft.Sql", "Microsoft.Web"]
+    delegates         = null
   }
 }
