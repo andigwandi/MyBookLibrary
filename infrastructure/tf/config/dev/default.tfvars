@@ -4,10 +4,10 @@ env_config = {
   function_storage         = 0
   instance                 = "01"
   kv_abbr                  = "kvt"
-  kv_access_groups         = ["MBL-ADMINS", "MLB-DEV"]
+  kv_access_groups         = ["MBL-ADMINS", "mbl-DEV"]
   location                 = "East US"
   region                   = "eastus-1"
-  resource_group           = "mlb-dev"
+  resource_group           = "mbl-dev"
   storage_replication_type = "LRS"
   subscription_id          = "c79a4db8-e628-4a6b-9da6-7e30602a6b73"
 }

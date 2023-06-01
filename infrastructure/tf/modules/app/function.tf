@@ -1,4 +1,4 @@
-module "mlb_function_app" {
+module "mbl_function_app" {
   source = "../shared/function_app/windows"
   depends_on = [
     module.sql_server,
