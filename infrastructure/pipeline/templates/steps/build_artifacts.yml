@@ -1,0 +1,195 @@
+parameters:
+  - name: branchName
+    type: string
+  - name: buildVersionToDownload
+    type: string
+  - name: runId
+    type: string
+    default:
+  - name: projectID
+    type: string
+  - name: pipelineID
+    type: string
+
+steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionRDSCMasterDataLoader'
+    inputs:
+      artifact: functionRDSCMasterDataLoader
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionFeeCalculation'
+    inputs:
+      artifact: functionFeeCalculation
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionInvalidSalesTransactionTrigger'
+    inputs:
+      artifact: functionInvalidSalesTransactionTrigger
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionSalesTransactionTrigger'
+    inputs:
+      artifact: functionSalesTransactionTrigger
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionSubLedgerProcessing'
+    inputs:
+      artifact: functionSubLedgerProcessing
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionFileIngestion'
+    inputs:
+      artifact: functionFileIngestion
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionFileEncryption'
+    inputs:
+      artifact: functionFileEncryption
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionFileGeneration'
+    inputs:
+      artifact: functionFileGeneration
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+  
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionIssuerReconciliation'
+    inputs:
+      artifact: functionIssuerReconciliation
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionIntegrationTest'
+    inputs:
+      artifact: functionIntegrationTest
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionExceptionManagementProcessing'
+    inputs:
+      artifact: functionExceptionManagementProcessing
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionSAPFileGeneration'
+    inputs:
+      artifact: functionSAPFileGeneration
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
+  
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download functionBizLinkFileGeneration'
+    inputs:
+      artifact: functionBizLinkFileGeneration
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}
