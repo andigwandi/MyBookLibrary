@@ -43,3 +43,4 @@ stages:
       branchName: '$(resources.pipeline.Build.sourceBranch)'
       tfParallelism: ${{ variables.tfParallelism }}
       statefile: 'default'
+      dependsOn: 'Release_dev_default'
