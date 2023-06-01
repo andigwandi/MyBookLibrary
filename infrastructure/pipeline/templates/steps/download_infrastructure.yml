@@ -1,0 +1,27 @@
+parameters:
+  - name: branchName
+    type: string
+  - name: buildVersionToDownload
+    type: string
+  - name: runId
+    type: string
+    default:
+  - name: projectID
+    type: string
+  - name: pipelineID
+    type: string
+
+steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download Infrastructure'
+    inputs:
+      artifact: infrastructure
+      patterns: '**'
+      path: '$(System.DefaultWorkingDirectory)/infrastructure'
+      buildType: 'specific'
+      project: ${{ parameters.projectID }}
+      definition: ${{ parameters.pipelineID }}
+      preferTriggeringPipeline: true
+      branchName: ${{ parameters.branchName }}
+      buildVersionToDownload: ${{ parameters.buildVersionToDownload }}
+      runId: ${{ parameters.runId }}

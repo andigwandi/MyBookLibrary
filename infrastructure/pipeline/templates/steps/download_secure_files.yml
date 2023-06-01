@@ -1,0 +1,9 @@
+parameters:
+  - name: environment
+    type: string
+
+steps:
+  - task: DownloadSecureFile@1
+    displayName: 'Download Secure File'
+    inputs:
+      secureFile: '${{parameters.environment}}-sensitive.tfvars'

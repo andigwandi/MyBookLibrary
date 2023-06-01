@@ -1,0 +1,11 @@
+steps:
+  - task: DownloadSecureFile@1
+    displayName: 'Download Secure File'
+    inputs:
+      secureFile: 'function.zip'
+  - task: CopyFiles@2
+    displayName: 'Copy Files to Artifacts Staging'
+    inputs:
+      SourceFolder: '$(Agent.TempDirectory)'
+      Contents: '**/*.zip'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
