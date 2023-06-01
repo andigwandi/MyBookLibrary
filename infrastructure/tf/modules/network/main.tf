@@ -38,6 +38,8 @@ module "subnet_app" {
     vnet_name         = module.vnet.config.name
     subnet_cidr       = local.network_cidr.appsubnetcidr
     service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage", "Microsoft.Sql", "Microsoft.Web"]
+
+    delegates = "Microsoft.Web/serverFarms"
   }
 }
 

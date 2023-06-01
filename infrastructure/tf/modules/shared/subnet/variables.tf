@@ -23,5 +23,6 @@ variable "config" {
     vnet_name         = string
     subnet_cidr       = string
     service_endpoints = list(string)
+    delegates         = string
   })
 }
