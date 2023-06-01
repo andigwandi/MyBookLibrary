@@ -17,7 +17,7 @@ stages:
       - template: '../jobs/functions.yml'
         parameters:
           dotnetVersion: ${{ parameters.dotnetVersion }}
-          buildDirectory: 'fn-mybooklibrary/fn-mybooklibrary.csproj'
+          buildDirectory: 'fn-mybooklibrary/mbl-app.csproj'
           artifactName: 'function'
 
       - template: '../jobs/solution_test.yml'
