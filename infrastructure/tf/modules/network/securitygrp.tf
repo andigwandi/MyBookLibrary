@@ -5,7 +5,7 @@ module "web-nsg" {
   env_config = local.env_config
   config = {
     name      = "web-nsg"
-    subnet_id = local.subnet_web.config.id
+    subnet_id = module.subnet_web.config.id
   }
 
   security_rules = [
@@ -42,7 +42,7 @@ module "app-nsg" {
   env_config = local.env_config
   config = {
     name      = "app-nsg"
-    subnet_id = local.subnet_app.config.id
+    subnet_id = module.subnet_app.config.id
   }
 
   security_rules = [{
@@ -77,7 +77,7 @@ module "db-nsg" {
   env_config = local.env_config
   config = {
     name      = "db-nsg"
-    subnet_id = local.subnet_db.config.id
+    subnet_id = module.subnet_db.config.id
   }
 
   security_rules = [{
