@@ -23,13 +23,19 @@ resource "azurerm_mssql_server" "main" {
   )
 }
 
+resource "azurerm_mssql_virtual_network_rule" "example" {
+  name      = "sql-vnet-rule"
+  server_id = azurerm_mssql_server.main.id
+  subnet_id = local.db_config.subnet_id
+}
+
 resource "azurerm_mssql_database" "test" {
   name           = local.db_config.db_name
   server_id      = azurerm_mssql_server.main.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
   max_size_gb    = 1
-  read_scale     = true
+  read_scale     = false
   sku_name       = "S0"
   zone_redundant = false
 
