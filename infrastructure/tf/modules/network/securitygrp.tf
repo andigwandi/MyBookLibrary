@@ -4,8 +4,8 @@ module "web-nsg" {
 
   env_config = local.env_config
   config = {
-    name        = "web-nsg"
-    subnet_cidr = local.network_cidr.websubnetcidr
+    name      = "web-nsg"
+    subnet_id = local.subnet_web.config.id
   }
 
   security_rules = [
@@ -41,8 +41,8 @@ module "app-nsg" {
 
   env_config = local.env_config
   config = {
-    name        = "app-nsg"
-    subnet_cidr = local.network_cidr.appsubnetcidr
+    name      = "app-nsg"
+    subnet_id = local.subnet_app.config.id
   }
 
   security_rules = [{
@@ -76,8 +76,8 @@ module "db-nsg" {
 
   env_config = local.env_config
   config = {
-    name        = "db-nsg"
-    subnet_cidr = local.network_cidr.dbsubnetcidr
+    name      = "db-nsg"
+    subnet_id = local.subnet_db.config.id
   }
 
   security_rules = [{

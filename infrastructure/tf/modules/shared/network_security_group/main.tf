@@ -31,9 +31,8 @@ resource "azurerm_network_security_group" "main" {
   })
 }
 
-
 resource "azurerm_subnet_network_security_group_association" "main" {
-  subnet_id                 = local.config.subnet_cidr
+  subnet_id                 = local.config.subnet_id
   network_security_group_id = azurerm_network_security_group.main.id
 }
 
