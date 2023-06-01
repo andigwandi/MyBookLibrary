@@ -71,7 +71,7 @@ stages:
                     azureSubscription: ${{ parameters.azureSubscription }}
                     resourceGroup: $(resourceGroup)
                     statefileName: '${{ parameters.environment }}-${{ parameters.stateFile }}.tfstate'
-                    ringSuffix: $(ringSuffix)
+                    environmentSuffix: $(environmentSuffix)
                     workingDirectory: '$(System.DefaultWorkingDirectory)/infrastructure/tf/root'
 
                 - template: '../steps/terraform/tf_validate.yml'
