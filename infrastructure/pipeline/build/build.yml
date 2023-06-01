@@ -1,7 +1,4 @@
-trigger:
-  branches:
-    include:
-      - develop
+trigger: none
 
 name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 resources:
