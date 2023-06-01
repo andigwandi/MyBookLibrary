@@ -27,6 +27,6 @@ steps:
       workingDirectory: ${{ parameters.workingDirectory }}
       backendServiceArm: ${{ parameters.azureSubscription }}
       backendAzureRmResourceGroupName: ${{ parameters.resourceGroup }}
-      backendAzureRmStorageAccountName: 'tfMyBookLib${{parameters.environmentSuffix}}'
+      backendAzureRmStorageAccountName: 'tfmybookinglibrary${{parameters.environmentSuffix}}'
       backendAzureRmContainerName: 'state'
       backendAzureRmKey: ${{ parameters.statefileName }}

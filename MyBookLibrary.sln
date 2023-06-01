@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{43F6DEAF-D4D8-4B11-96EB-E7D70B2A6DFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{806BA101-0FF5-4032-A298-1997EC508BD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{091098D4-2624-456C-B955-612DDCE2E95D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5C0C5BF6-B7E2-431A-9618-006EC9ED1F78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MBL", "MBL\MBL.csproj", "{28BE9B0B-4B04-4DBD-87A7-DDF4579B0B4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{17DED4AC-C0B6-4898-A87B-5266136BE70C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mbl-app", "fn-mybooklibrary\mbl-app.csproj", "{791D9985-2B64-4C99-AEDC-29412DEA1D53}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{AD32C069-38F2-47DA-9FBB-8F643576E5F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28BE9B0B-4B04-4DBD-87A7-DDF4579B0B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BE9B0B-4B04-4DBD-87A7-DDF4579B0B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BE9B0B-4B04-4DBD-87A7-DDF4579B0B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BE9B0B-4B04-4DBD-87A7-DDF4579B0B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17DED4AC-C0B6-4898-A87B-5266136BE70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DED4AC-C0B6-4898-A87B-5266136BE70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17DED4AC-C0B6-4898-A87B-5266136BE70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17DED4AC-C0B6-4898-A87B-5266136BE70C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791D9985-2B64-4C99-AEDC-29412DEA1D53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791D9985-2B64-4C99-AEDC-29412DEA1D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791D9985-2B64-4C99-AEDC-29412DEA1D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791D9985-2B64-4C99-AEDC-29412DEA1D53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD32C069-38F2-47DA-9FBB-8F643576E5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD32C069-38F2-47DA-9FBB-8F643576E5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD32C069-38F2-47DA-9FBB-8F643576E5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD32C069-38F2-47DA-9FBB-8F643576E5F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28BE9B0B-4B04-4DBD-87A7-DDF4579B0B4A} = {806BA101-0FF5-4032-A298-1997EC508BD7}
+		{17DED4AC-C0B6-4898-A87B-5266136BE70C} = {091098D4-2624-456C-B955-612DDCE2E95D}
+		{791D9985-2B64-4C99-AEDC-29412DEA1D53} = {43F6DEAF-D4D8-4B11-96EB-E7D70B2A6DFC}
+		{AD32C069-38F2-47DA-9FBB-8F643576E5F5} = {5C0C5BF6-B7E2-431A-9618-006EC9ED1F78}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D426FC96-6AA4-4247-8214-2DDEB0F2EA4C}
+	EndGlobalSection
+EndGlobal

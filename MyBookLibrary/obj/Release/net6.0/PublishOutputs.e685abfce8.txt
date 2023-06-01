@@ -1,7 +1,0 @@
-C:\D\Projects\test\MyBookLibrary\obj\Docker\publish\MyBookLibrary.exe
-C:\D\Projects\test\MyBookLibrary\obj\Docker\publish\appsettings.Development.json
-C:\D\Projects\test\MyBookLibrary\obj\Docker\publish\appsettings.json
-C:\D\Projects\test\MyBookLibrary\obj\Docker\publish\MyBookLibrary.dll
-C:\D\Projects\test\MyBookLibrary\obj\Docker\publish\MyBookLibrary.deps.json
-C:\D\Projects\test\MyBookLibrary\obj\Docker\publish\MyBookLibrary.runtimeconfig.json
-C:\D\Projects\test\MyBookLibrary\obj\Docker\publish\MyBookLibrary.pdb
