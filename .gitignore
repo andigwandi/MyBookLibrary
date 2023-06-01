@@ -35,7 +35,7 @@ local.settings.json
 [Dd]ebugPublic/
 [Rr]elease/
 #except pipeline releases
-!infrastructure/pipelines/release/
+!infrastructure/pipeline/release/
 [Rr]eleases/
 x64/
 x86/
