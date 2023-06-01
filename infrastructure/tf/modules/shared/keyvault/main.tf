@@ -25,16 +25,11 @@ resource "azurerm_key_vault" "key_vault" {
   soft_delete_retention_days      = local.config.soft_delete_retention_days
   sku_name                        = local.config.sku_name
 
-  public_network_access_enabled = (local.keyvault_network_config.private_networking_enabled) ? true : null
-
-  dynamic "network_acls" {
-    for_each = (local.keyvault_network_config.private_networking_enabled) ? [1] : []
-    content {
-      bypass                     = local.keyvault_network_config.acls_bypass
-      default_action             = local.keyvault_network_config.default_action
-      virtual_network_subnet_ids = local.keyvault_network_config.subnet_ids
-      ip_rules                   = length(local.keyvault_network_config.allowed_ip_list) == 0 ? [] : local.keyvault_network_config.allowed_ip_list
-    }
+  public_network_access_enabled = true
+  network_acls {
+    bypass                     = local.keyvault_network_config.acls_bypass
+    default_action             = local.keyvault_network_config.default_action
+    virtual_network_subnet_ids = local.keyvault_network_config.subnet_ids
   }
 
   tags = merge(local.env_config.tags,

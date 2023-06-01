@@ -34,6 +34,5 @@ variable "keyvault_network_config" {
     default_action             = string
     private_networking_enabled = bool
     subnet_ids                 = list(any)
-    allowed_ip_list            = list(any)
   })
 }

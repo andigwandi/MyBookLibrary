@@ -6,9 +6,6 @@ module "keyvault" {
   keyvault_network_config = merge(var.keyvault_network_config,
     {
       subnet_ids = [local.subnet_app_config.id]
-      allowed_ip_list = [
-        ""
-      ]
     }
   )
 }
