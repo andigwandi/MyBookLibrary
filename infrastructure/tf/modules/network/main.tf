@@ -20,9 +20,10 @@ module "subnet_web" {
   env_config = local.env_config
 
   config = {
-    name        = "web-subnet"
-    vnet_name   = module.vnet.config.name
-    subnet_cidr = local.network_cidr.websubnetcidr
+    name              = "web-subnet"
+    vnet_name         = module.vnet.config.name
+    subnet_cidr       = local.network_cidr.websubnetcidr
+    service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage", "Microsoft.Sql", "Microsoft.Web"]
   }
 }
 
@@ -33,9 +34,10 @@ module "subnet_app" {
   env_config = local.env_config
 
   config = {
-    name        = "app-subnet"
-    vnet_name   = module.vnet.config.name
-    subnet_cidr = local.network_cidr.appsubnetcidr
+    name              = "app-subnet"
+    vnet_name         = module.vnet.config.name
+    subnet_cidr       = local.network_cidr.appsubnetcidr
+    service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage", "Microsoft.Sql", "Microsoft.Web"]
   }
 }
 
@@ -46,8 +48,9 @@ module "subnet_db" {
   env_config = local.env_config
 
   config = {
-    name        = "db-subnet"
-    vnet_name   = module.vnet.config.name
-    subnet_cidr = local.network_cidr.dbsubnetcidr
+    name              = "db-subnet"
+    vnet_name         = module.vnet.config.name
+    subnet_cidr       = local.network_cidr.dbsubnetcidr
+    service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage", "Microsoft.Sql", "Microsoft.Web"]
   }
 }

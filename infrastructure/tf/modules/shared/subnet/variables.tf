@@ -19,8 +19,9 @@ variable "env_config" {
 
 variable "config" {
   type = object({
-    name        = string
-    vnet_name   = string
-    subnet_cidr = string
+    name              = string
+    vnet_name         = string
+    subnet_cidr       = string
+    service_endpoints = list(string)
   })
 }
