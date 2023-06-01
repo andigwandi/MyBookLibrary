@@ -170,3 +170,13 @@ resource "azurerm_windows_function_app" "function" {
     create_before_destroy = true
   }
 }
+
+data "azurerm_function_app_host_keys" "key" {
+  depends_on = [
+    azurerm_windows_function_app.function
+  ]
+
+  name                = local.function_name
+  resource_group_name = local.env_config.resource_group
+}
+
