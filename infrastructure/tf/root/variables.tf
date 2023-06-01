@@ -78,7 +78,6 @@ variable "sql_credentials" {
 
 variable "service_plan_config" {
   type = object({
-    app_name                     = string
     maximum_elastic_worker_count = number
     os_type                      = string
     per_site_scaling             = bool
