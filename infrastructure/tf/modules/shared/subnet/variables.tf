@@ -23,6 +23,12 @@ variable "config" {
     vnet_name         = string
     subnet_cidr       = string
     service_endpoints = list(string)
-    delegates         = string
   })
+}
+
+variable "subnet_delegations" {
+  type = map(any)
+  default = {
+    subnet1 = "Microsoft.Web/serverFarms"
+  }
 }

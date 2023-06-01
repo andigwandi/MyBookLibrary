@@ -10,14 +10,12 @@ resource "azurerm_subnet" "main" {
   service_endpoints    = local.config.service_endpoints
 
   dynamic "delegation" {
-    for_each = (length(local.config.delegates) > 0) ? [1] : [0]
+    for_each = var.subnet_delegations
     content {
-      name = "delegation"
+      name = delegation.key
       service_delegation {
-        name = "Microsoft.Web/serverFarms"
-        actions = [
-          "Microsoft.Network/virtualNetworks/subnets/action"
-        ]
+        name    = delegation.value
+        actions = ["*"]
       }
     }
   }
