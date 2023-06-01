@@ -33,7 +33,7 @@ stages:
     variables:
       - template: '../../variables/${{ parameters.environment }}.yml'
 
-    condition: and(or(eq(variables['Build.SourceBranch'], 'refs/heads/develop')), and(succeeded(), eq(variables.enabled, 'true')))
+    condition: and(eq(variables['Build.SourceBranch'], 'refs/heads/develop'),and(succeeded(), eq(variables.enabled, 'true')))
     jobs:
       - deployment: 'Deploy_${{ parameters.environment }}_${{ parameters.statefile }}'
         environment: 'MBL-${{ parameters.stateFile }}-${{ parameters.environment }}'
