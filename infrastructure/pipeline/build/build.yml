@@ -18,7 +18,7 @@ stages:
   - template: '../templates/stages/build.yml'
     parameters:
       dotnetVersion: $(dotnet_version)
-      environments: ['dev', 'uat']
+      environments: ['dev']
       stateFile: 'default'
       terraformVersion: $(terraformVersion)
       tfParallelism: ${{ variables.tfParallelism }}

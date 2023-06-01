@@ -170,31 +170,3 @@ resource "azurerm_windows_function_app" "function" {
     create_before_destroy = true
   }
 }
-
-data "azurerm_function_app_host_keys" "key" {
-  depends_on = [
-    azurerm_windows_function_app.function
-  ]
-
-  name                = local.function_name
-  resource_group_name = local.env_config.resource_group
-}
-
-data "azurerm_client_config" "current" {}
-
-module "function_storage_managed_rbac" {
-  source = "../../role_based_access"
-  depends_on = [
-    azurerm_windows_function_app.function,
-  ]
-
-  scope        = local.code_config.id
-  principal_id = azurerm_windows_function_app.function.identity[0].principal_id
-
-  roles = [
-    "Storage Blob Data Contributor",
-    "Storage Account Key Operator Service Role",
-    "Reader and Data Access",
-    "Storage Blob Data Reader",
-  ]
-}

@@ -14,7 +14,7 @@ parameters:
 stages:
   - stage: build
     jobs:
-      - template: '../jobs/functions.yml'
+      {% comment %} - template: '../jobs/functions.yml'
         parameters:
           dotnetVersion: ${{ parameters.dotnetVersion }}
           buildDirectory: 'fn-mybooklibrary/mbl-app.csproj'
@@ -26,7 +26,7 @@ stages:
           buildDirectory: 'MyBookLibrary.sln'
           solution: 'MyBookLibrary'      
 
-      - template: '../jobs/publish_infrastructure.yml'
+      - template: '../jobs/publish_infrastructure.yml' {% endcomment %}
 
       - ${{ each environment in parameters.environments }}:
           - template: '../jobs/infrastructure.yml'
