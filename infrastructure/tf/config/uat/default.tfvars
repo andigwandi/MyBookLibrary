@@ -13,10 +13,10 @@ env_config = {
 }
 
 network_cidr = {
-  vnetcidr      = "192.168.10.0/16"
-  websubnetcidr = "192.168.11.0/24"
-  appsubnetcidr = "192.168.12.0/24"
-  dbsubnetcidr  = "192.168.13.0/24"
+  vnetcidr      = "10.1.0.0/16"
+  websubnetcidr = "10.1.1.0/24"
+  appsubnetcidr = "10.1.2.0/24"
+  dbsubnetcidr  = "10.1.3.0/24"
 }
 
 
