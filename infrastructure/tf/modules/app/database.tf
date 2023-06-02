@@ -16,7 +16,7 @@ module "sql_server" {
 module "db_storage_store_secret_connection_string" {
   source = "../shared/keyvault_store_secret"
   depends_on = [
-    module.module.sql_server,
+    module.sql_server,
     module.keyvault
   ]
 
