@@ -55,6 +55,6 @@ module "mbl_function_app" {
 
   function_app_network_config = {
     private_networking_enabled = true
-    subnet_id                  = local.subnet_app_config.id
+    subnet_id                  = null
   }
 }
