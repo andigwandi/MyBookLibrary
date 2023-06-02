@@ -1,5 +1,9 @@
-trigger: none
-
+trigger:
+  branches:
+    include:
+      - develop
+      - release/*
+      
 name: $(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 resources:
   repositories:
