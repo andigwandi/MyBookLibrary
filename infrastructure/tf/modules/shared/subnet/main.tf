@@ -15,7 +15,7 @@ resource "azurerm_subnet" "main" {
       name = delegation.key
       service_delegation {
         name    = delegation.value
-        actions = ["*"]
+        actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
       }
     }
   }
