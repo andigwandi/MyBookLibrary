@@ -30,7 +30,7 @@ service_plan_config = {
   maximum_elastic_worker_count = null
   os_type                      = "Windows"
   per_site_scaling             = false
-  sku_name                     = "F1"
+  sku_name                     = "B1"
   worker_count                 = 1
   zone_balancing_enabled       = false
 }
